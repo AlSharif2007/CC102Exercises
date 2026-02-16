@@ -1,11 +1,13 @@
 #include <iostream>
 #include <vector>
+#include <cstdlib>
 using namespace std;
 
 int main() {
     char again;
 
     do {
+        system("clear");
         const int PRODUCTS = 5;
         const int SALESPERSONS = 4;
 
