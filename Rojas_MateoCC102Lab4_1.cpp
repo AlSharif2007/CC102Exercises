@@ -25,23 +25,24 @@ int main() {
             }
 
             double avg = sum / quizzes;
-
             avg = (int)(avg * 100 + 0.5) / 100.0;
-
             average[i] = avg;
         }
 
-        cout << "\nStudent\t";
+        cout << "\n--------------------------------------------------\n";
+        cout << "Student\t";
         for (int j = 0; j < quizzes; j++)
             cout << "Q" << j + 1 << "\t";
         cout << "Average\n";
+        cout << "--------------------------------------------------\n";
 
         for (int i = 0; i < students; i++) {
             cout << i + 1 << "\t";
             for (int j = 0; j < quizzes; j++)
                 cout << scores[i][j] << "\t";
 
-            cout << average[i] << "%" << endl;
+            cout << average[i] << "%\n";
+            cout << "--------------------------------------------------\n";
         }
 
         cout << "\nRun program again? (y/n): ";
