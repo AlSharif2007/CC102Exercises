@@ -1,10 +1,12 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 
 int main() {
     char again;
 
     do {
+        system("clear");
         int students, quizzes;
         cout << "Enter number of students: ";
         cin >> students;
