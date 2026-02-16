@@ -15,7 +15,6 @@ int main() {
         double amount;
         char choice;
 
-        // Input sales
         do {
             cout << "\nEnter Salesperson number (1-4): ";
             cin >> salesperson;
@@ -45,7 +44,6 @@ int main() {
 
         double grandTotal = 0;
 
-        // Display table
         for (int i = 0; i < PRODUCTS; i++) {
             double rowTotal = 0;
 
@@ -60,7 +58,6 @@ int main() {
             grandTotal += rowTotal;
         }
 
-        // Column totals
         cout << "Total\t";
 
         for (int j = 0; j < SALESPERSONS; j++) {
