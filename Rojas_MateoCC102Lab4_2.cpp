@@ -40,25 +40,29 @@ int main() {
         } while (choice == 'y' || choice == 'Y');
 
         cout << "\n\nSales Summary Table\n";
-        cout << "\nProduct\tSP1\tSP2\tSP3\tSP4\tTotal\n";
+        cout << "-------------------------------------------------------------\n";
+        cout << "| Product\tSP1\tSP2\tSP3\tSP4\tTotal |\n";
+        cout << "-------------------------------------------------------------\n";
 
         double grandTotal = 0;
 
         for (int i = 0; i < PRODUCTS; i++) {
             double rowTotal = 0;
 
-            cout << i + 1 << "\t";
+            cout << "| " << i + 1 << "\t";
 
             for (int j = 0; j < SALESPERSONS; j++) {
                 cout << sales[i][j] << ".00%\t";
                 rowTotal += sales[i][j];
             }
 
-            cout << rowTotal << ".00%" << endl;
+            cout << rowTotal << ".00% |\n";
+            cout << "-------------------------------------------------------------\n";
+
             grandTotal += rowTotal;
         }
 
-        cout << "Total\t";
+        cout << "| Total\t";
 
         for (int j = 0; j < SALESPERSONS; j++) {
             double columnTotal = 0;
@@ -70,7 +74,8 @@ int main() {
             cout << columnTotal << ".00%\t";
         }
 
-        cout << grandTotal << ".00%" << endl;
+        cout << grandTotal << ".00% |\n";
+        cout << "-------------------------------------------------------------\n";
 
         cout << "\nRun program again? (y/n): ";
         cin >> again;
