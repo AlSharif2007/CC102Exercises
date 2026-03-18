@@ -35,7 +35,6 @@ int main() {
         for (int i = 0; i < n; i++) {
             cout << "\nBook " << i + 1 << endl;
 
-            // Unique barcode check
             bool unique;
             do {
                 unique = true;
@@ -62,7 +61,6 @@ int main() {
             cin >> b[i].rating;
         }
 
-        // Display
         cout << "\n\n--- Book Records ---\n";
         cout << "Barcode\tTitle\tYear\tRating\tCategory\n";
 
