@@ -1,14 +1,7 @@
 #include <iostream>
-#include <cstdlib>
 #include <string>
+#include <cstdlib>
 using namespace std;
-
-struct book {
-    int barcode;
-    string title;
-    int year;
-    int rating;
-};
 
 string getCategory(int rating) {
     switch (rating) {
@@ -21,56 +14,76 @@ string getCategory(int rating) {
     }
 }
 
+template <typename T>
+void input(T b[], int n) {
+    for (int i = 0; i < n; i++) {
+        cout << "\nBook " << i + 1 << endl;
+
+        bool unique;
+        do {
+            unique = true;
+            cout << "Enter Barcode: ";
+            cin >> b[i].barcode;
+
+            for (int j = 0; j < i; j++) {
+                if (b[i].barcode == b[j].barcode) {
+                    cout << "Barcode already exists! Enter another.\n";
+                    unique = false;
+                    break;
+                }
+            }
+        } while (!unique);
+
+        cin.ignore();
+
+        cout << "Enter Title: ";
+        getline(cin, b[i].title);
+
+        cout << "Enter Year: ";
+        cin >> b[i].year;
+
+        cout << "Enter Rating (0-5): ";
+        cin >> b[i].rating;
+    }
+}
+
+template <typename T>
+void display(T b[], int n) {
+    cout << "\n--- Book Records ---\n";
+    cout << "Barcode\tTitle\tYear\tRating\tCategory\n";
+
+    for (int i = 0; i < n; i++) {
+        cout << b[i].barcode << "\t"
+             << b[i].title << "\t"
+             << b[i].year << "\t"
+             << b[i].rating << "\t"
+             << getCategory(b[i].rating) << endl;
+    }
+}
+
 int main() {
+    int n;
     char repeat;
 
     do {
-        system("cls");
-        int n;
+        system("clear"); 
+        
         cout << "Enter number of books: ";
         cin >> n;
 
-        book b[n];
+        struct book {
+            int barcode;
+            string title;
+            int year;
+            int rating;
+        };
+        
+        book* b = new book[n];
 
-        for (int i = 0; i < n; i++) {
-            cout << "\nBook " << i + 1 << endl;
+        input(b, n);
+        display(b, n);
 
-            bool unique;
-            do {
-                unique = true;
-                cout << "Enter Barcode: ";
-                cin >> b[i].barcode;
-
-                for (int j = 0; j < i; j++) {
-                    if (b[i].barcode == b[j].barcode) {
-                        cout << "Barcode already exists! Enter another.\n";
-                        unique = false;
-                        break;
-                    }
-                }
-            } while (!unique);
-
-            cin.ignore();
-            cout << "Enter Title: ";
-            getline(cin, b[i].title);
-
-            cout << "Enter Year Published: ";
-            cin >> b[i].year;
-
-            cout << "Enter Rating (0-5): ";
-            cin >> b[i].rating;
-        }
-
-        cout << "\n\n--- Book Records ---\n";
-        cout << "Barcode\tTitle\tYear\tRating\tCategory\n";
-
-        for (int i = 0; i < n; i++) {
-            cout << b[i].barcode << "\t"
-                 << b[i].title << "\t"
-                 << b[i].year << "\t"
-                 << b[i].rating << "\t"
-                 << getCategory(b[i].rating) << endl;
-        }
+        delete[] b;
 
         cout << "\nRun again? (y/n): ";
         cin >> repeat;
