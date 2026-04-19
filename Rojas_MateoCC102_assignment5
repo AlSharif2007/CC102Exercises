@@ -1,0 +1,57 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+    ofstream file("original.txt", ios::out);
+
+    if (file.is_open())
+    {
+        file << "One\n";
+        file << "Two\n";
+        file << "Three\n";
+        file << "Four\n";
+        file << "Five\n";
+        file << "Six\n";
+        file.close();
+    }
+    else
+    {
+        cout << "Cannot open file";
+    }
+
+    ofstream sorted("sorted.txt", ios::out);
+    ifstream fileIn("original.txt", ios::in);
+
+    if (fileIn.is_open() && sorted.is_open())
+    {
+        vector<string> words;
+        string line;
+
+        while (getline(fileIn, line))
+        {
+            words.push_back(line);
+        }
+
+        sort(words.begin(), words.end());
+
+        for (const auto &word : words)
+        {
+            sorted << word << endl;
+        }
+
+        cout << "File sorted successfully." << endl;
+        sorted.close();
+        fileIn.close();
+    }
+    else
+    {
+        cout << "Cannot open file";
+    }
+
+    return 0;
+}
