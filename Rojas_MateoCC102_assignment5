@@ -4,11 +4,9 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
-
 int main()
 {
     ofstream file("original.txt", ios::out);
-
     if (file.is_open())
     {
         file << "One\n";
@@ -23,7 +21,6 @@ int main()
     {
         cout << "Cannot open file";
     }
-
     ofstream sorted("sorted.txt", ios::out);
     ifstream fileIn("original.txt", ios::in);
 
@@ -36,14 +33,12 @@ int main()
         {
             words.push_back(line);
         }
-
         sort(words.begin(), words.end());
 
         for (const auto &word : words)
         {
             sorted << word << endl;
         }
-
         cout << "File sorted successfully." << endl;
         sorted.close();
         fileIn.close();
@@ -52,6 +47,5 @@ int main()
     {
         cout << "Cannot open file";
     }
-
     return 0;
 }
