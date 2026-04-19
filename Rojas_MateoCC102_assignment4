@@ -1,0 +1,47 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+
+    ofstream file("color.txt", ios::out);
+
+    if (file.is_open())
+    {
+        file << "Magenta\n";
+        file << "Torquoise\n";
+        file << "Yello\n";
+        file << "White\n";
+        file << "Black\n";
+        file.close();
+    }
+    else
+    {
+        cout << "Cannot open file";
+    }
+
+    ifstream infile("color.txt", ios::in);
+    ofstream copyFile("color_copy.txt", ios::out);
+
+    if (copyFile.is_open() && infile.is_open())
+    {
+        string line;
+
+        while (getline(infile, line))
+        {
+            copyFile << line << endl;
+        }
+        cout << "File copied successfully." << endl;
+        copyFile.close();
+        infile.close();
+    }
+    else
+    {
+        cout << "Cannot open file";
+    }
+
+    return 0;
+}
