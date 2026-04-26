@@ -1,0 +1,414 @@
+:root {
+      --primary: #7c3aed;
+      --primary-light: #a855f7;
+      --primary-dark: #5b21b6;
+      --accent: #38bdf8;
+      --bg-gradient: linear-gradient(135deg,#ede9fe 0%,#e0f2fe 60%,#f3e8ff 100%);
+      --text: #1e1b4b;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --card-border: rgba(124,58,237,0.12);
+      --radius: 1.25rem;
+      --shadow: 0 8px 40px rgba(124,58,237,0.10);
+      --shadow-sm: 0 4px 12px rgba(124,58,237,0.08);
+      --font: 'Plus Jakarta Sans', sans-serif;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --sidebar-w: 260px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg-gradient);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Fake Navbar (matches site) ── */
+    .navbar {
+      position: sticky; top: 0; z-index: 300;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(124,58,237,0.08);
+      box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 1.5rem; height: 68px;
+      display: flex; align-items: center; gap: 2rem;
+    }
+    .logo { display: flex; align-items: center; gap: .55rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(124,58,237,.30);
+    }
+    .logo-icon svg { width: 22px; height: 22px; }
+    .logo-text { font-size: 1.25rem; font-weight: 800; color: var(--text); letter-spacing: -.03em; }
+    .logo-text span { color: var(--primary); }
+    .nav-spacer { flex: 1; }
+    .user-profile-container {
+      display: flex; align-items: center; gap: .55rem;
+      background: linear-gradient(135deg,rgba(124,58,237,.15),rgba(168,85,247,.1));
+      border: 1px solid var(--card-border); border-radius: 12px;
+      padding: .35rem .85rem .35rem .35rem;
+    }
+    .user-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .75rem; color: white;
+      box-shadow: 0 4px 12px rgba(124,58,237,.25);
+    }
+    .user-name { font-weight: 700; font-size: .85rem; color: var(--text); }
+
+    /* ── Sidebar Overlay ── */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(30,27,75,.3); z-index: 100;
+    }
+    /* CSS-only sidebar toggle via hidden checkbox */
+    #sidebar-toggle { display: none; }
+
+    #sidebar-toggle:checked ~ .sidebar-overlay { display: block; }
+    #sidebar-toggle:checked ~ .sidebar { transform: translateX(0); }
+    #sidebar-toggle:checked ~ label.sidebar-hamburger { background: #5b21b6; }
+    #sidebar-toggle:checked ~ label.sidebar-hamburger span:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    #sidebar-toggle:checked ~ label.sidebar-hamburger span:nth-child(2) { opacity: 0; }
+    #sidebar-toggle:checked ~ label.sidebar-hamburger span:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed; left: 0; top: 68px;
+      width: var(--sidebar-w); height: calc(100vh - 68px);
+      background: white; border-right: 1px solid var(--card-border);
+      overflow-y: auto; z-index: 200;
+      transition: transform .3s cubic-bezier(.4,2,.6,1);
+    }
+    .sidebar-nav { display: flex; flex-direction: column; gap: .5rem; padding: 1.5rem 1rem; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: .75rem;
+      padding: .75rem 1rem; border-radius: 10px;
+      text-decoration: none; color: var(--text-muted);
+      font-weight: 600; font-size: .95rem;
+      transition: all .2s; position: relative;
+    }
+    .sidebar-item:hover { background: rgba(124,58,237,.07); color: var(--primary); }
+    .sidebar-item.active { background: rgba(124,58,237,.12); color: var(--primary); }
+    .sidebar-item.active::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: var(--primary); border-radius: 0 4px 4px 0;
+    }
+    .sidebar-icon { width: 20px; height: 20px; flex-shrink: 0; }
+    .sidebar-divider { height: 1px; background: var(--card-border); margin: .5rem 0; }
+
+    /* ── Hamburger (CSS-only label) ── */
+    label.sidebar-hamburger {
+      display: none;
+      position: fixed; bottom: 24px; right: 24px;
+      z-index: 250; width: 48px; height: 48px;
+      background: var(--primary); border-radius: 50%;
+      box-shadow: 0 4px 14px rgba(124,58,237,.3);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 7px; cursor: pointer; padding: 8px;
+      transition: background .2s;
+    }
+    label.sidebar-hamburger:hover { background: #5b21b6; }
+    label.sidebar-hamburger span {
+      display: block; width: 26px; height: 4px;
+      background: white; border-radius: 3px; transition: all .3s;
+    }
+
+    /* ── Main Content ── */
+    .main-content {
+      margin-left: var(--sidebar-w);
+      padding: 2rem;
+      min-height: 100vh;
+      animation: slideIn .3s ease;
+    }
+
+    /* ── Page Header ── */
+    .page-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin: 3rem 3rem 2.5rem;
+    }
+    .page-title { font-size: 2.3rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .25rem; }
+    .page-subtitle { font-size: 1rem; color: var(--text-muted); font-weight: 500; }
+
+    /* ── Voucher Input Section ── */
+    .voucher-input-card {
+      background: white;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 2.5rem;
+      margin: 0 3rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .voucher-input-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light), var(--accent));
+    }
+    .voucher-input-label {
+      font-size: .75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text-muted); margin-bottom: .75rem; display: block;
+    }
+    .voucher-input-row { display: flex; gap: 1rem; align-items: stretch; flex-wrap: wrap; }
+    .voucher-input-wrap { flex: 1; min-width: 220px; position: relative; }
+    .voucher-field-icon {
+      position: absolute; left: 1rem; top: 50%; transform: translateY(-50%);
+      width: 20px; height: 20px; color: var(--text-muted);
+    }
+    .voucher-field {
+      width: 100%; padding: .85rem 1rem .85rem 2.75rem;
+      border: 1.5px solid var(--card-border); border-radius: 10px;
+      font-family: var(--font); font-size: 1rem; font-weight: 700;
+      color: var(--text); background: #fafafa; letter-spacing: .08em;
+      text-transform: uppercase; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .voucher-field:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(124,58,237,.1); background: white; }
+    .voucher-field::placeholder { font-weight: 500; letter-spacing: .02em; text-transform: none; color: #b0b8c9; }
+    .btn-apply {
+      padding: .85rem 2rem;
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      color: white; border: none; border-radius: 10px;
+      font-family: var(--font); font-size: .95rem; font-weight: 700;
+      cursor: pointer; white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(124,58,237,.3);
+      transition: transform .2s, box-shadow .2s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .btn-apply:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(124,58,237,.4); }
+
+    /* ── Applied Discount Banner ── */
+    .discount-banner {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(16,185,129,.08);
+      border: 1.5px solid rgba(16,185,129,.25);
+      border-radius: 12px; padding: 1rem 1.5rem;
+      margin-top: 1.25rem;
+    }
+    .discount-banner-icon { width: 36px; height: 36px; flex-shrink: 0; color: var(--success); }
+    .discount-banner-text { flex: 1; }
+    .discount-banner-title { font-weight: 700; font-size: .95rem; color: #065f46; }
+    .discount-banner-desc { font-size: .83rem; color: #047857; margin-top: .15rem; }
+    .discount-banner-amount {
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--success); white-space: nowrap;
+    }
+    .btn-remove {
+      padding: .35rem .75rem; background: none;
+      border: 1.5px solid rgba(239,68,68,.3); color: var(--danger);
+      border-radius: 7px; font-family: var(--font); font-size: .78rem;
+      font-weight: 700; cursor: pointer; transition: all .2s; white-space: nowrap;
+      text-decoration: none; display: inline-block;
+    }
+    .btn-remove:hover { background: rgba(239,68,68,.08); border-color: var(--danger); }
+
+    /* ── Summary Box ── */
+    .summary-box {
+      background: linear-gradient(135deg,rgba(124,58,237,.05),rgba(168,85,247,.04));
+      border: 1px solid var(--card-border); border-radius: 12px;
+      padding: 1.25rem 1.5rem; margin-top: 1.5rem;
+    }
+    .summary-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .4rem 0; font-size: .9rem;
+    }
+    .summary-row + .summary-row { border-top: 1px dashed var(--card-border); }
+    .summary-label { color: var(--text-muted); font-weight: 500; }
+    .summary-value { font-weight: 700; color: var(--text); }
+    .summary-value.discount { color: var(--success); }
+    .summary-row.total .summary-label,
+    .summary-row.total .summary-value { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+    .summary-row.total { border-top: 2px solid var(--card-border); margin-top: .25rem; padding-top: .6rem; }
+
+    /* ── Available Vouchers Grid ── */
+    .section-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin: 2.5rem 3rem 1.25rem;
+    }
+    .section-title { font-size: 1.25rem; font-weight: 800; }
+    .section-meta { font-size: .85rem; color: var(--text-muted); font-weight: 500; }
+
+    .vouchers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin: 0 3rem 2.5rem;
+    }
+
+    /* ── Voucher Card ── */
+    .voucher-card {
+      background: white;
+      border: 1.5px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      position: relative;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .voucher-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .voucher-card.expired { opacity: .55; pointer-events: none; }
+
+    /* Ticket notch effect */
+    .voucher-card::before,
+    .voucher-card::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--bg-gradient);
+      top: 50%; transform: translateY(-50%);
+      z-index: 2;
+    }
+    .voucher-card::before { left: -10px; }
+    .voucher-card::after { right: -10px; }
+
+    .voucher-stripe {
+      height: 6px;
+    }
+    .stripe-purple { background: linear-gradient(90deg,var(--primary),var(--primary-light)); }
+    .stripe-blue   { background: linear-gradient(90deg,#3b82f6,var(--accent)); }
+    .stripe-green  { background: linear-gradient(90deg,var(--success),#34d399); }
+    .stripe-amber  { background: linear-gradient(90deg,var(--warning),#fbbf24); }
+
+    .voucher-body { padding: 1.4rem 1.5rem; }
+    .voucher-type-row {
+      display: flex; align-items: center; gap: .6rem; margin-bottom: .75rem;
+    }
+    .voucher-badge {
+      font-size: .65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; padding: .25rem .65rem; border-radius: 50px;
+    }
+    .badge-purple { background: rgba(124,58,237,.1); color: var(--primary); }
+    .badge-blue   { background: rgba(59,130,246,.1); color: #3b82f6; }
+    .badge-green  { background: rgba(16,185,129,.1); color: var(--success); }
+    .badge-amber  { background: rgba(245,158,11,.1); color: var(--warning); }
+    .badge-expired { background: rgba(107,114,128,.1); color: var(--text-muted); }
+
+    .voucher-title { font-size: 1.05rem; font-weight: 800; margin-bottom: .3rem; }
+    .voucher-desc  { font-size: .83rem; color: var(--text-muted); font-weight: 500; line-height: 1.5; }
+
+    .voucher-divider {
+      border: none; border-top: 1.5px dashed var(--card-border);
+      margin: 1rem 0;
+    }
+
+    .voucher-code-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .voucher-code {
+      font-size: .95rem; font-weight: 800; letter-spacing: .1em;
+      color: var(--primary); background: rgba(124,58,237,.08);
+      padding: .45rem .9rem; border-radius: 8px; font-variant-numeric: tabular-nums;
+    }
+    .voucher-discount-chip {
+      font-size: 1.35rem; font-weight: 800;
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    .voucher-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-top: 1rem; gap: .75rem; flex-wrap: wrap;
+    }
+    .voucher-expiry {
+      font-size: .75rem; font-weight: 600; color: var(--text-muted);
+      display: flex; align-items: center; gap: .3rem;
+    }
+    .voucher-expiry svg { width: 13px; height: 13px; }
+    .expiry-soon .voucher-expiry { color: var(--warning); }
+
+    .btn-use {
+      padding: .5rem 1.2rem;
+      background: linear-gradient(135deg,var(--primary),var(--primary-light));
+      color: white; border: none; border-radius: 8px;
+      font-family: var(--font); font-size: .82rem; font-weight: 700;
+      cursor: pointer; transition: all .2s;
+      box-shadow: 0 3px 10px rgba(124,58,237,.25);
+      text-decoration: none; display: inline-block;
+    }
+    .btn-use:hover { transform: translateY(-1px); box-shadow: 0 5px 14px rgba(124,58,237,.35); }
+    .btn-used {
+      padding: .5rem 1.2rem;
+      background: rgba(16,185,129,.1); color: var(--success);
+      border: 1.5px solid rgba(16,185,129,.25); border-radius: 8px;
+      font-family: var(--font); font-size: .82rem; font-weight: 700;
+      cursor: default; display: inline-flex; align-items: center; gap: .35rem;
+    }
+
+    /* ── History Section ── */
+    .history-table-wrap {
+      background: white;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      margin: 0 3rem 3rem;
+      overflow: hidden;
+    }
+    .history-table {
+      width: 100%; border-collapse: collapse;
+    }
+    .history-table thead { background: rgba(124,58,237,.05); }
+    .history-table th {
+      padding: .9rem 1.5rem;
+      text-align: left; font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--text-muted); border-bottom: 1px solid var(--card-border);
+    }
+    .history-table td {
+      padding: 1rem 1.5rem;
+      font-size: .9rem; font-weight: 500; vertical-align: middle;
+    }
+    .history-table tr + tr td { border-top: 1px solid var(--card-border); }
+    .history-table tr:hover td { background: rgba(124,58,237,.02); }
+    .hist-code {
+      font-weight: 800; letter-spacing: .06em; color: var(--primary);
+      font-size: .85rem;
+    }
+    .hist-discount { font-weight: 700; color: var(--success); }
+    .hist-date { color: var(--text-muted); font-size: .85rem; }
+    .pill {
+      display: inline-block; padding: .2rem .65rem;
+      border-radius: 50px; font-size: .72rem; font-weight: 700;
+    }
+    .pill-success { background: rgba(16,185,129,.1); color: var(--success); }
+    .pill-muted   { background: rgba(107,114,128,.1); color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 899px) {
+      .main-content { margin-left: 0; }
+      .page-header, .section-header,
+      .voucher-input-card,
+      .vouchers-grid,
+      .history-table-wrap { margin-left: 1.5rem; margin-right: 1.5rem; }
+      .vouchers-grid { grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); }
+    }
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); }
+      label.sidebar-hamburger { display: flex !important; }
+      .page-header { margin: 2rem 1.25rem 1.5rem; }
+      .section-header { margin-left: 1.25rem; margin-right: 1.25rem; }
+      .voucher-input-card { margin-left: 1.25rem; margin-right: 1.25rem; padding: 1.5rem; }
+      .vouchers-grid { margin-left: 1.25rem; margin-right: 1.25rem; grid-template-columns: 1fr; }
+      .history-table-wrap { margin-left: 1.25rem; margin-right: 1.25rem; overflow-x: auto; }
+      .page-title { font-size: 1.8rem; }
+      .user-profile-container { display: none; }
+    }
+    @media (min-width: 769px) {
+      .sidebar { transform: translateX(0) !important; }
+      label.sidebar-hamburger { display: none !important; }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
