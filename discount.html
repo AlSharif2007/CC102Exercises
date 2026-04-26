@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ZamboDorm – Vouchers & Discounts</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%237c3aed;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%238b5cf6;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='6' ry='6' fill='url(%23grad)'/%3E%3Cpath d='M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H4C3.45 21 3 20.55 3 20V9.5Z' fill='white' fill-opacity='0.95'/%3E%3Crect x='9' y='14' width='6' height='7' rx='1' fill='rgba(124,58,237,0.65)'/%3E%3C/svg%3E"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="discount-styles.css"/>
+</head>
+<body>
+
+<!-- CSS-only sidebar toggle (no JS) -->
+<input type="checkbox" id="sidebar-toggle"/>
+
+<!-- Sidebar Overlay (label targets checkbox) -->
+<label class="sidebar-overlay" for="sidebar-toggle"></label>
+
+<!-- Hamburger Button (label, no JS) -->
+<label class="sidebar-hamburger" for="sidebar-toggle" aria-label="Toggle sidebar">
+  <span></span><span></span><span></span>
+</label>
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <nav class="sidebar-nav">
+    <a href="tenant-myroom.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span>My Room</span>
+    </a>
+    <a href="tenant-payment.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="5" width="20" height="14" rx="2"/>
+        <line x1="2" y1="10" x2="22" y2="10"/>
+        <circle cx="18" cy="17" r="1" fill="currentColor"/>
+      </svg>
+      <span>Payments</span>
+    </a>
+    <a href="tenant-service.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/>
+        <line x1="12" y1="12" x2="12" y2="16"/>
+        <line x1="10" y1="14" x2="14" y2="14"/>
+      </svg>
+      <span>Request Service</span>
+    </a>
+    <a href="tenant-complaint.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span>Complaints</span>
+    </a>
+    <a href="tenant-visitors.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      <span>Visitors</span>
+    </a>
+    <div class="sidebar-divider"></div>
+    <!-- Active: Vouchers -->
+    <a href="tenant-vouchers.html" class="sidebar-item active">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+        <line x1="7" y1="7" x2="7.01" y2="7"/>
+      </svg>
+      <span>Vouchers</span>
+    </a>
+    <a href="tenant-settings.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+      <span>Settings</span>
+    </a>
+    <a href="tenant-help.html" class="sidebar-item">
+      <svg class="sidebar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+        <circle cx="12" cy="17" r=".5" fill="currentColor"/>
+      </svg>
+      <span>Help</span>
+    </a>
+  </nav>
+</aside>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="/" class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 9.5L12 3L21 9.5V20C21 20.55 20.55 21 20 21H4C3.45 21 3 20.55 3 20V9.5Z" fill="white" fill-opacity=".95"/>
+          <rect x="9" y="14" width="6" height="7" rx="1" fill="rgba(124,58,237,0.65)"/>
+        </svg>
+      </div>
+      <span class="logo-text">Zambo<span>Dorm</span></span>
+    </a>
+    <div class="nav-spacer"></div>
+    <div class="user-profile-container">
+      <div class="user-avatar">JD</div>
+      <span class="user-name">Juan Dela Cruz</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="main-content">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1 class="page-title">Vouchers & Discounts</h1>
+      <p class="page-subtitle">Apply promo codes or use your available vouchers on payments</p>
+    </div>
+    <div class="room-badge" style="display:flex;flex-direction:column;align-items:flex-end;background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(168,85,247,.08));border:1px solid var(--card-border);border-radius:var(--radius);padding:.85rem 1.25rem;">
+      <span style="font-size:.65rem;font-weight:700;text-transform:uppercase;color:var(--text-muted);letter-spacing:1px;margin-bottom:.35rem;">Room</span>
+      <span style="font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">067-A</span>
+    </div>
+  </div>
+
+  <!-- Voucher Code Entry -->
+  <div class="voucher-input-card">
+    <span class="voucher-input-label">Enter Promo / Discount Code</span>
+    <div class="voucher-input-row">
+      <div class="voucher-input-wrap">
+        <svg class="voucher-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+          <line x1="7" y1="7" x2="7.01" y2="7"/>
+        </svg>
+        <input class="voucher-field" type="text" placeholder="e.g. ZDEARLY10" maxlength="20"/>
+      </div>
+      <button class="btn-apply">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Apply Code
+      </button>
+    </div>
+
+    <!-- Applied Discount Banner (always shown as example state) -->
+    <div class="discount-banner">
+      <svg class="discount-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      <div class="discount-banner-text">
+        <div class="discount-banner-title">🎉 ZDEARLY10 applied successfully!</div>
+        <div class="discount-banner-desc">Early Bird Discount · 10% off your next monthly rent</div>
+      </div>
+      <div class="discount-banner-amount">−₱450</div>
+      <a href="#" class="btn-remove">Remove</a>
+    </div>
+
+    <!-- Payment Summary -->
+    <div class="summary-box">
+      <div class="summary-row">
+        <span class="summary-label">Monthly Rent</span>
+        <span class="summary-value">₱4,500</span>
+      </div>
+      <div class="summary-row">
+        <span class="summary-label">Voucher (ZDEARLY10 · 10%)</span>
+        <span class="summary-value discount">−₱450</span>
+      </div>
+      <div class="summary-row total">
+        <span class="summary-label">Total Due</span>
+        <span class="summary-value">₱4,050</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Available Vouchers -->
+  <div class="section-header">
+    <h3 class="section-title">Your Available Vouchers</h3>
+    <span class="section-meta">4 active · 1 expiring soon</span>
+  </div>
+
+  <div class="vouchers-grid">
+
+    <!-- Card 1: Early Bird -->
+    <div class="voucher-card">
+      <div class="voucher-stripe stripe-purple"></div>
+      <div class="voucher-body">
+        <div class="voucher-type-row">
+          <span class="voucher-badge badge-purple">Rent Discount</span>
+        </div>
+        <div class="voucher-title">Early Bird Promo</div>
+        <div class="voucher-desc">Pay before the 5th of the month and enjoy 10% off your monthly rent.</div>
+        <hr class="voucher-divider"/>
+        <div class="voucher-code-row">
+          <div class="voucher-code">ZDEARLY10</div>
+          <div class="voucher-discount-chip">10% OFF</div>
+        </div>
+        <div class="voucher-footer">
+          <div class="voucher-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires May 31, 2026
+          </div>
+          <span class="btn-used">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="13" height="13"><polyline points="20 6 9 17 4 12"/></svg>
+            Applied
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Referral -->
+    <div class="voucher-card">
+      <div class="voucher-stripe stripe-blue"></div>
+      <div class="voucher-body">
+        <div class="voucher-type-row">
+          <span class="voucher-badge badge-blue">Referral Reward</span>
+        </div>
+        <div class="voucher-title">Refer a Tenant</div>
+        <div class="voucher-desc">You referred a friend who successfully moved in. Enjoy a fixed credit on your next billing.</div>
+        <hr class="voucher-divider"/>
+        <div class="voucher-code-row">
+          <div class="voucher-code">ZDREF500</div>
+          <div class="voucher-discount-chip" style="background:linear-gradient(135deg,#3b82f6,var(--accent));-webkit-background-clip:text;">₱500 OFF</div>
+        </div>
+        <div class="voucher-footer expiry-soon">
+          <div class="voucher-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires May 2, 2026 · Soon!
+          </div>
+          <button class="btn-use">Use Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Loyalty -->
+    <div class="voucher-card">
+      <div class="voucher-stripe stripe-green"></div>
+      <div class="voucher-body">
+        <div class="voucher-type-row">
+          <span class="voucher-badge badge-green">Loyalty Reward</span>
+        </div>
+        <div class="voucher-title">6-Month Loyalty Bonus</div>
+        <div class="voucher-desc">Celebrating 6 months with ZamboDorm! A special discount as our thanks.</div>
+        <hr class="voucher-divider"/>
+        <div class="voucher-code-row">
+          <div class="voucher-code">ZDLOYAL15</div>
+          <div class="voucher-discount-chip" style="background:linear-gradient(135deg,var(--success),#34d399);-webkit-background-clip:text;">15% OFF</div>
+        </div>
+        <div class="voucher-footer">
+          <div class="voucher-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires Jul 31, 2026
+          </div>
+          <button class="btn-use">Use Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Seasonal -->
+    <div class="voucher-card">
+      <div class="voucher-stripe stripe-amber"></div>
+      <div class="voucher-body">
+        <div class="voucher-type-row">
+          <span class="voucher-badge badge-amber">Seasonal Promo</span>
+        </div>
+        <div class="voucher-title">Summer Break Deal</div>
+        <div class="voucher-desc">Special summer promo for continuing tenants. Fixed deduction on June billing cycle.</div>
+        <hr class="voucher-divider"/>
+        <div class="voucher-code-row">
+          <div class="voucher-code">ZDSUMMER26</div>
+          <div class="voucher-discount-chip" style="background:linear-gradient(135deg,var(--warning),#fbbf24);-webkit-background-clip:text;">₱300 OFF</div>
+        </div>
+        <div class="voucher-footer">
+          <div class="voucher-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expires Jun 30, 2026
+          </div>
+          <button class="btn-use">Use Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 5: Expired -->
+    <div class="voucher-card expired">
+      <div class="voucher-stripe" style="background:#e5e7eb;"></div>
+      <div class="voucher-body">
+        <div class="voucher-type-row">
+          <span class="voucher-badge badge-expired">Expired</span>
+        </div>
+        <div class="voucher-title">New Tenant Welcome</div>
+        <div class="voucher-desc">One-time 5% discount for new tenants on first month rent.</div>
+        <hr class="voucher-divider"/>
+        <div class="voucher-code-row">
+          <div class="voucher-code" style="color:var(--text-muted);background:rgba(107,114,128,.08);">ZDNEWBIE5</div>
+          <div style="font-size:1.1rem;font-weight:800;color:var(--text-muted);">5% OFF</div>
+        </div>
+        <div class="voucher-footer">
+          <div class="voucher-expiry">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+            Expired Jan 15, 2026
+          </div>
+          <span style="font-size:.78rem;font-weight:600;color:var(--text-muted);">Unavailable</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /vouchers-grid -->
+
+  <!-- Redemption History -->
+  <div class="section-header">
+    <h3 class="section-title">Redemption History</h3>
+  </div>
+
+  <div class="history-table-wrap">
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Description</th>
+          <th>Discount</th>
+          <th>Applied To</th>
+          <th>Date Used</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="hist-code">ZDNEWBIE5</span></td>
+          <td>New Tenant Welcome</td>
+          <td><span class="hist-discount">−₱225</span></td>
+          <td>January Rent</td>
+          <td class="hist-date">Jan 3, 2026</td>
+          <td><span class="pill pill-success">Redeemed</span></td>
+        </tr>
+        <tr>
+          <td><span class="hist-code">ZDREF500</span></td>
+          <td>Refer a Tenant</td>
+          <td><span class="hist-discount">−₱500</span></td>
+          <td>February Rent</td>
+          <td class="hist-date">Feb 1, 2026</td>
+          <td><span class="pill pill-success">Redeemed</span></td>
+        </tr>
+        <tr>
+          <td><span class="hist-code">ZDEARLY10</span></td>
+          <td>Early Bird Promo</td>
+          <td><span class="hist-discount">−₱450</span></td>
+          <td>March Rent</td>
+          <td class="hist-date">Mar 4, 2026</td>
+          <td><span class="pill pill-success">Redeemed</span></td>
+        </tr>
+        <tr>
+          <td><span class="hist-code">ZDLOYAL15</span></td>
+          <td>6-Month Loyalty Bonus</td>
+          <td><span class="hist-discount">−₱675</span></td>
+          <td>April Rent</td>
+          <td class="hist-date">Apr 2, 2026</td>
+          <td><span class="pill pill-muted">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+</body>
+</html>
